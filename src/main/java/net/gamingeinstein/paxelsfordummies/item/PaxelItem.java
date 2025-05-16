@@ -29,21 +29,20 @@ import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.Set;
 
-@ParametersAreNonnullByDefault
-public class PaxelItem extends DiggerItem {
+public class PaxelItem extends DiggerItemWithoutDurability {
     private static final Set<ItemAbility> DEFAULT_PAXEL_ACTIONS = Util.make(Collections.newSetFromMap(new IdentityHashMap<>()), actions -> {
         actions.addAll(ItemAbilities.DEFAULT_PICKAXE_ACTIONS);
         actions.addAll(ItemAbilities.DEFAULT_SHOVEL_ACTIONS);
         actions.addAll(ItemAbilities.DEFAULT_AXE_ACTIONS);
     });
 
-    public PaxelItem(Tier pTier, Properties pProperties) {
-        super(pTier, ModTags.Blocks.MINEABLE_WITH_PAXEL, pProperties.durability((int)(pTier.getUses() * 0.75f * 3)));
+    public PaxelItem(Tier tier, float attackDamage, float attackSpeed, Properties properties) {
+        super(tier, ModTags.Blocks.MINEABLE_WITH_PAXEL,
+			properties.durability((int)(tier.getUses() * 0.75f * 3)).attributes(createAttributes(tier, attackDamage, attackSpeed)));
     }
 
     // This is just both of the useOn methods in the Axe and Shovel classes
     // I took this from Mekanism's code since it was the simplest and most reliable, but anyone can do this with some tinkering
-    @NotNull
     @Override
     public InteractionResult useOn(UseOnContext context) {
         Level world = context.getLevel();
@@ -53,8 +52,9 @@ public class PaxelItem extends DiggerItem {
         BlockState resultToSet = useAsAxe(blockstate, context);
         if (resultToSet == null) {
             // We can't strip the block that was right-clicked, so we use it as a shovel
-            if (context.getClickedFace() == Direction.DOWN)
-                return InteractionResult.PASS;
+            if (context.getClickedFace() == Direction.DOWN) {
+				return InteractionResult.PASS;
+			}
             BlockState foundResult = blockstate.getToolModifiedState(context, ItemAbilities.SHOVEL_FLATTEN, false);
             if (foundResult != null && world.isEmptyBlock(blockpos.above())) {
                 // Flatten the block as a shovel
@@ -63,25 +63,28 @@ public class PaxelItem extends DiggerItem {
             } else {
                 resultToSet = blockstate.getToolModifiedState(context, ItemAbilities.SHOVEL_DOUSE, false);
                 // Use the paxel as a shovel to extinguish a campfire
-                if (resultToSet != null && !world.isClientSide)
-                    world.levelEvent(null, LevelEvent.SOUND_EXTINGUISH_FIRE, blockpos, 0);
+                if (resultToSet != null && !world.isClientSide) {
+					world.levelEvent(null, LevelEvent.SOUND_EXTINGUISH_FIRE, blockpos, 0);
+				}
             }
-            if (resultToSet == null)
-                return InteractionResult.PASS;
+            if (resultToSet == null) {
+				return InteractionResult.PASS;
+			}
         }
         if (!world.isClientSide) {
             ItemStack stack = context.getItemInHand();
-            if (player instanceof ServerPlayer serverPlayer)
-                CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, blockpos, stack);
+            if (player instanceof ServerPlayer serverPlayer) {
+				CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, blockpos, stack);
+			}
             world.setBlock(blockpos, resultToSet, Block.UPDATE_ALL_IMMEDIATE);
             world.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(player, resultToSet));
-            if (player != null)
-                stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(context.getHand()));
+            if (player != null) {
+				stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(context.getHand()));
+			}
         }
         return InteractionResult.sidedSuccess(world.isClientSide);
     }
 
-    @Nullable
     private BlockState useAsAxe(BlockState state, UseOnContext context) {
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();

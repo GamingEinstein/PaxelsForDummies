@@ -5,8 +5,8 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.77'
 }
 
-version = "${version}+mc${minecraft_version}-neoforge"
-group = group_id
+version = "${mod_version}+mc${minecraft_version}-neoforge"
+group = mod_group_id
 base.archivesName = "${mod_id}"
 
 repositories {
@@ -142,12 +142,11 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
                              minecraft_version_range: minecraft_version_range,
                              neoforge_version       : neoforge_version,
                              neoforge_version_range : neoforge_version_range,
-                             loader_version_range   : loader_version_range,
                              mod_id                 : mod_id,
                              mod_name               : mod_name,
                              mod_description        : mod_description,
                              license                : license,
-                             version                : version,
+                             mod_version            : mod_version,
                              authors                : authors,
                              credits                : credits]
     inputs.properties replaceProperties

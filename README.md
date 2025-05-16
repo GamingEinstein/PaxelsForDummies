@@ -1,30 +1,18 @@
-<p align="center"><img src="https://i.imgur.com/eypCA6x.png" alt="Paxels for Dummies Logo" width="200"></p>
+# __**Paxels for Dummies**__
 
-## Installation Requirements
-| Minecraft | Forge | NeoForge | Fabric | Quilt |
-|:---------:|:-----:|:--------:|:------:|:-----:|
-|  1.20.1   |  Yes  |    No*   | Soon** |  No*  |
-|  1.21.1   |  No   |    Yes   | Soon** |  No*  |
+Paxels for Dummies adds a suite of tools calls Paxels, which are a combination of a Pickaxe, Axe and Shovel. They still retain all previous functionality of the combined tools. To make one, simply put the three tools in any crafting station or inventory.
 
-_*: There is no planned port being made. However, they should still work as long as NeoForge and Quilt support Forge and Fabric mods respectively._<br>
-_**: See FAQ_
+This mod was made with the intention of being both simple and consistently updated to the latest major modding versions. In the future, I might add support for certain mods that add their own tool tiers, but no guarantees.
 
-## About
-Paxels for Dummies adds a suite of tools calls Paxels, which are a combination of a Pickaxe, Axe and Shovel. To make one, simply combine the three tools in your inventory or in a crafting table.
+If you would like to contribute or make suggestions, join my [Discord](https://discord.gg/kEkMdv232X)!
 
-This mod was made with the intention of being both cross-platform (see FAQ) and consistently updated to the latest major modding versions. Eventually, I might even add support for different mods (no promises, but it's on my radar)
+## __**FAQ**__
 
-If you would like to contribute or make suggestions, join my Discord!
+**Can you port it to (insert minecraft version or modloader)**
+Currently, the only versions I will be supporting is the latest supported modding version (1.21.1 at the moment). If I see fit, I will do my own porting to ensure quality and consistency
 
-## FAQ
-Q: **Can you port it to (insert version here) or (insert mod loader here)?**<br>
-A: Currently, the only versions I will be supporting is what's listed under *Installation Requirements*. If I see fit, I will do my own ports to ensure quality and consistency
+**Can you add (insert idea)?**
+You can leave suggestions for the mod along with any of my other projects on my [Discord](https://discord.gg/kEkMdv232X)
 
-Q: **Where are the Fabric versions?**<br>
-A: I've been trying to make my mods work under both Fabric and (Neo)Forge, but it's been quite difficult do to many differences between the mod loaders. Mainly, I just can't seem to get Fabric to work the way I want it to. So until I understand Fabric as well as I do (Neo)Forge, those versions will be coming at a later date or possibly not at all. It is on my radar, though, so don't worry too much about it
-
-Q: **Can you add (insert idea here)?**<br>
-A: You can leave suggestions for the mod on my Discord
-
-Q: **Why is this a question?**<br>
-A: Why not
+**Why is this a question?**
+Why not

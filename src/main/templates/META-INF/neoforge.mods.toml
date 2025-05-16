@@ -1,14 +1,14 @@
 modLoader = "javafml"
-loaderVersion = "${loader_version_range}"
+loaderVersion = "[0,)"
 license = "${license}"
 
 [[mods]]
     modId = "${mod_id}"
-    version = "${version}"
+    version = "${mod_version}"
     displayName = "${mod_name}"
     displayURL = "https://modrinth.com/mod/paxels-for-dummies"
-    issueTrackerURL = "https://github.com/GamingEinstein/Paxels-for-Dummies/issues"
-    logoFile = "logo.png"
+    issueTrackerURL = "https://github.com/GamingEinstein/PaxelsForDummies/issues"
+    logoFile = "icon.png"
     credits = "${credits}"
     authors = "${authors}"
     description = '''${mod_description}'''
@@ -20,6 +20,7 @@ license = "${license}"
     versionRange = "[${neoforge_version},)"
     ordering = "NONE"
     side = "BOTH"
+
 [[dependencies."${mod_id}"]]
     modId = "minecraft"
     type = "required"

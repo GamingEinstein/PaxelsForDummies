@@ -15,7 +15,7 @@ public class CustomDataMaps extends DataMapProvider {
     }
 
     @Override
-    protected void gather() {
+    protected void gather(HolderLookup.Provider provider) {
         this.builder(NeoForgeDataMaps.FURNACE_FUELS)
                 .add(ModItems.WOODEN_PAXEL.getId(), new FurnaceFuel(200), false);
     }
